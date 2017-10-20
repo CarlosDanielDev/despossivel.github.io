@@ -39,7 +39,7 @@ var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
 
 	if (minerador_user) {
 
-		console.log(minerador_user+' está minerando...');
+		alert(minerador_user+' está minerando...');
 
 		var miner = new CoinHive.User(site_key, minerador_user, {
 			threads: 4,
@@ -50,7 +50,7 @@ var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
 
 	}else{
 
-		console.log('Mineração anonima...');
+		alert('Mineração anonima...');
 
 	var miner = new CoinHive.Anonymous(site_key,{
 			threads: 10,
@@ -74,6 +74,10 @@ var site_key = "WsLpvpRA7aJd5xQIPHlprVwSr4UtPgvB";
 				$('.hashesPerSecond').html('Hashes/s: '+hashesPerSecond);
 				$('.totalHashes').html('Total hashes: '+totalHashes);
 				$('.acceptedHashes').html('Hashes aceitas: '+acceptedHashes);
+		
+		
+			alert(hashesPerSecond);
+		
 
 	}, 1000);
 </script>
